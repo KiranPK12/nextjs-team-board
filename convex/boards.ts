@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query } from "./_generated/server";
+import { getAllOrThrow } from "convex-helpers/server/relationships";
 
 export const get = query({
   args: {
@@ -13,6 +14,23 @@ export const get = query({
       throw new Error("Unauthorized");
     }
 
+    if (args.favourites) {
+      const favouritedBoards = await ctx.db
+        .query("userFavourites")
+        .withIndex("by_user_org", (q) =>
+          q.eq("orgId", args.orgId).eq("userId", identity.subject)
+        )
+        .order("asc")
+        .collect();
+
+      const ids = favouritedBoards.map((b) => b.boardId);
+
+      const boards = await getAllOrThrow(ctx.db, ids);
+      return boards.map((board) => ({
+        ...board,
+        isFavourite: true,
+      }));
+    }
     const title = args.search as string;
     let boards = [];
 
