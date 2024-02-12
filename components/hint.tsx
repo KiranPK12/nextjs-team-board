@@ -33,7 +33,7 @@ const Hint = ({
           sideOffset={sideOffset}
           alignOffset={alignOffset}
         >
-          <p className="capitalize font-semibold">{label}</p>
+          <p className="capitalize font-medium">{label}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
