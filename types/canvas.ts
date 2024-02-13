@@ -103,15 +103,23 @@ export type CanvasState =
     }
   | {
       mode: CanvasMode.Pressing;
+      origin: Point;
     }
   | {
       mode: CanvasMode.Inserting;
+      layerType:
+        | LayerType.Ellipse
+        | LayerType.Rectangle
+        | LayerType.Text
+        | LayerType.Note;
     }
   | {
       mode: CanvasMode.Pencil;
     }
   | {
       mode: CanvasMode.Resizing;
+      initialBounds: XYWH;
+      corner: Side;
     }
   | {
       mode: CanvasMode.SelectionNet;
@@ -120,4 +128,5 @@ export type CanvasState =
     }
   | {
       mode: CanvasMode.Translating;
+      current: Point;
     };
