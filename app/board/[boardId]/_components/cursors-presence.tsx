@@ -5,12 +5,12 @@ import { useOthersConnectionIds } from "@/liveblocks.config";
 import Cursor from "./cursor";
 
 const Cursors = () => {
-  const ids = useOthersConnectionIds();    
+  const ids = useOthersConnectionIds();
   return (
     <>
-      {ids.map((connectionId) => {
-        <Cursor key={connectionId} connectionId={connectionId} />;
-      })}
+      {ids.map((connectionId) => (
+        <Cursor key={connectionId} connectionId={connectionId} />
+      ))}
     </>
   );
 };
@@ -18,7 +18,7 @@ const Cursors = () => {
 const CursorsPresence = memo(() => {
   return (
     <>
-    {/* TODO: draft pencil there  */}
+      {/* TODO: draft pencil there  */}
       <Cursors />
     </>
   );

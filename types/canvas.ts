@@ -1,3 +1,5 @@
+import { Eclipse } from "lucide-react";
+
 export enum CanvasMode {
   None,
   Pressing,
@@ -130,3 +132,10 @@ export type CanvasState =
       mode: CanvasMode.Translating;
       current: Point;
     };
+
+export type Layer =
+  | RectangleLayer
+  | EllipseLayer
+  | NoteLayer
+  | PathLayer
+  | TextLayer;
